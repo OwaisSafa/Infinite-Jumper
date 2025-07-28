@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Infinite Jumper</title>
+    
+    <!-- Favicon and app icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background particles for visual effect -->
+    <div class="background-particles" id="particles"></div>
+    
+    <!-- Main game container -->
+    <div class="game-container">
+        <!-- Game canvas where everything is drawn -->
+        <canvas id="gameCanvas"></canvas>
+        
+        <!-- UI overlay with score and level -->
+        <div id="ui">
+            <div class="score-container left">
+                <div id="score">Score: <span id="scoreValue">0</span></div>
+            </div>
+            <div class="level-container">
+                <div class="level-progress">
+                    <div class="level-bar"></div>
+                </div>
+                <div class="level-text">Level <span id="levelValue">1</span></div>
+            </div>
+            <div class="score-container right">
+                <div id="highScore">Best: <span id="highScoreValue">0</span></div>
+            </div>
+        </div>
+        
+        <!-- Achievement popup -->
+        <div id="achievement" class="achievement">
+            New Achievement!
+        </div>
+        
+        <!-- Game over screen -->
+        <div id="gameOver" class="overlay hidden">
+            <div class="content">
+                <h2>Game Over!</h2>
+                <div class="score-value" id="finalScore">0</div>
+                <p>Can you jump higher?</p>
+                <div class="stats">
+                    <p>Platforms Jumped: <span id="platformsJumped">0</span></p>
+                    <p>Max Height: <span id="maxHeight">0</span>m</p>
+                    <p>Time Survived: <span id="timeSurvived">0</span>s</p>
+                </div>
+                <button id="restartButton" class="touch-button">Play Again</button>
+            </div>
+        </div>
+        
+        <!-- Welcome screen with instructions -->
+        <div id="instructions" class="overlay">
+            <div class="content">
+                <h2>Infinite Jumper</h2>
+                <p>Jump as high as you can!</p>
+                <div class="controls-info">
+                    <span class="control-key">← / A</span>
+                    <span class="control-key">→ / D</span>
+                    <span class="control-key">Space</span>
+                </div>
+                <p>Use arrow keys or A/D to move</p>
+                <p>Press SPACE for double jump</p>
+                <div class="platform-guide">
+                    <p>Platform Types:</p>
+                    <div class="platform-types">
+                        <div class="platform-type">
+                            <span class="platform-color normal"></span>
+                            <span>Normal</span>
+                        </div>
+                        <div class="platform-type">
+                            <span class="platform-color moving"></span>
+                            <span>Moving</span>
+                        </div>
+                        <div class="platform-type">
+                            <span class="platform-color breakable"></span>
+                            <span>Breakable</span>
+                        </div>
+                        <div class="platform-type">
+                            <span class="platform-color boost"></span>
+                            <span>Boost</span>
+                        </div>
+                    </div>
+                </div>
+                <button id="startButton" class="touch-button">Start Game</button>
+            </div>
+        </div>
+        
+        <!-- Mobile touch controls -->
+        <div id="touchControls" class="touch-controls hidden">
+            <div class="touch-area left-touch" id="leftTouch"></div>
+            <div class="touch-area jump-touch" id="jumpTouch"></div>
+            <div class="touch-area right-touch" id="rightTouch"></div>
+        </div>
+    </div>
+    
+    <!-- External libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script src="game.js"></script>
+    
+    <!-- Initialize the game when page loads -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                new Game();
+            }, 100);
+        });
+    </script>
+</body>
+</html> 
